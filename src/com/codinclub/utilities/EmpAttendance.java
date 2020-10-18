@@ -13,18 +13,23 @@ public class EmpAttendance {
      * Functionality: This method contains logic of checking whether
      *                 employee is FullTime , PartTime or Absent
      *                 and Printing Daily Wage and Monthly Salary
-     *                 of Employee
+     *                 of Employee till working Hours reaches 100
+     *                 or Days 20
      * */
 
     EmpDailyWage empDailyWage = new EmpDailyWage();
 
     public void attendance() {
-        int Salary, totalSalary = 0, empHrs = 0, numWorkingDays = 20;
-        for (int i = 1; i <= numWorkingDays; i++) {
+        int Salary, totalSalary = 0, empHrs = 0, numWorkingDays = 0,workingHours=0;
+        while (numWorkingDays<20&&workingHours<100){
             double empCheck = (Math.floor(Math.random() * 10) % 3);
             int check = (int) empCheck;
 
             switch (check) {
+                case 0:
+                    empHrs = 0;
+                    System.out.println("Employee is Absent");
+                    break;
                 case 1:
                     System.out.println("Employee is Part Time");
                     empHrs = 8;
@@ -32,15 +37,14 @@ public class EmpAttendance {
                 case 2:
                     System.out.println("Employee is FullTime");
                     empHrs = 16;
-                case 0:
-                    empHrs = 0;
-                    System.out.println("Employee is Absent");
-                    break;
             }
-
+            workingHours=workingHours+empHrs;
+            numWorkingDays++;
             Salary = empDailyWage.empWage(empHrs);
             totalSalary = totalSalary + Salary;
         }
         System.out.println("Monthly Salary is : " + totalSalary);
+        System.out.println("Working Days is : " + numWorkingDays);
+        System.out.println("Working Hours is : " + workingHours);
     }
 }
