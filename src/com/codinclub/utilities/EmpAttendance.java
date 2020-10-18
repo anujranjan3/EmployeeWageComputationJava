@@ -18,19 +18,25 @@ public class EmpAttendance {
     EmpDailyWage empDailyWage = new EmpDailyWage();
     public void attendance(){
 
-        int empHrs,isPartTime=1,isFullTime=2;
+        int empHrs=0;
         double empCheck=(Math.floor(Math.random() * 10 ) % 3);
-        if (empCheck==isFullTime) {
-            System.out.println("Employee is FullTime");
-            empHrs=16;
-        }
-        else if (empCheck==isPartTime){
-            System.out.println("Employee is Part Time");
-            empHrs=8;
-        }
-        else{
-            empHrs=0;
-            System.out.println("Employee is Absent");
+        int check = (int) empCheck;
+
+        switch (check) {
+
+            case 0:
+                empHrs = 0;
+                System.out.println("Employee is Absent");
+                break;
+
+            case 1:
+                System.out.println("Employee is Part Time");
+                empHrs = 8;
+                break;
+            case 2:
+                System.out.println("Employee is FullTime");
+                empHrs = 16;
+
         }
         empDailyWage.empWage(empHrs);
 
