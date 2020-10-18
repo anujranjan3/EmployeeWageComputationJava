@@ -11,17 +11,21 @@ public class EmpAttendance {
 
     /*
      * Functionality: This method contains logic of checking whether
-     *                 employee is present or not and Printing
-     *                  salary of Employee
+     *                 employee is FullTime , PartTime or Absent
+     *                 and Printing salary of Employee
      * */
 
     EmpDailyWage empDailyWage = new EmpDailyWage();
     public void attendance(){
 
-        int empHrs,isPresent=1;
-        double empCheck=(Math.floor(Math.random() * 10 ) % 2);
-        if (empCheck==isPresent) {
-            System.out.println("Employee is Present");
+        int empHrs,isPartTime=1,isFullTime=2;
+        double empCheck=(Math.floor(Math.random() * 10 ) % 3);
+        if (empCheck==isFullTime) {
+            System.out.println("Employee is FullTime");
+            empHrs=16;
+        }
+        else if (empCheck==isPartTime){
+            System.out.println("Employee is Part Time");
             empHrs=8;
         }
         else{
