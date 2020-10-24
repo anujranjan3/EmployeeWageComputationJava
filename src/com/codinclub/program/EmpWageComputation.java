@@ -20,6 +20,7 @@ public class EmpWageComputation {
 
         Utility utilities=new Utility();
         EmpObjects dmart=new EmpObjects();
+        EmpObjects bigBasket=new EmpObjects();
 
         dmart.setCompany("Dmart");
         dmart.setEmpRatePerHr(20);
@@ -28,14 +29,28 @@ public class EmpWageComputation {
         utilities.attendance(dmart.getCompany(),dmart.getEmpRatePerHr(),
                              dmart.getNumWorkingDays(),dmart.getMaxWorkingHrsInMonth());
 
+        bigBasket.setCompany("BigBasket");
+        bigBasket.setEmpRatePerHr(20);
+        bigBasket.setNumWorkingDays(20);
+        bigBasket.setMaxWorkingHrsInMonth(100);
+        utilities.attendance(bigBasket.getCompany(),bigBasket.getEmpRatePerHr(),
+                bigBasket.getNumWorkingDays(),bigBasket.getMaxWorkingHrsInMonth());
+
         EmpObjects reliance=new EmpObjects("Reliance",20,
                                            20,100);
         utilities.attendance(reliance.getCompany(),reliance.getEmpRatePerHr(),
                              reliance.getNumWorkingDays(),reliance.getMaxWorkingHrsInMonth());
 
+        EmpObjects mphasis=new EmpObjects("Mphasis",20,
+                20,90);
+        utilities.attendance(mphasis.getCompany(),mphasis.getEmpRatePerHr(),
+                mphasis.getNumWorkingDays(),mphasis.getMaxWorkingHrsInMonth());
+
         ArrayList<EmpObjects> list = new ArrayList<EmpObjects>();
         list.add(dmart);
+        list.add(bigBasket);
         list.add(reliance);
+        list.add(mphasis);
 
         for (EmpObjects emp : list)
             System.out.println(emp);
