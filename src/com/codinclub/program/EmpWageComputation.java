@@ -1,11 +1,13 @@
 package com.codinclub.program;
 import com.codinclub.utilities.*;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /*
  * @author Anuj Ranjan Kumar
- * Create Date: 19th October 2020
+ * Create Date  : 19th October 2020
+ * Modified Date: 21st October 2020
  * Functionality: Program checks whether employee
  *                is present or absent
  * */
@@ -14,30 +16,28 @@ public class EmpWageComputation {
 
     public static void main (String []args){
 
-        Scanner scanner=new Scanner(System.in);
         System.out.println("Welcome to Employee Wage Problem ");
+
         Utility utilities=new Utility();
-        EmpObjects empObjects=new EmpObjects();
-        System.out.println("Enter Number of Companies to be computed :");
-        int counter=scanner.nextInt();
+        EmpObjects dmart=new EmpObjects();
 
-        for (int i=0; i<counter; i++){
+        dmart.setCompany("Dmart");
+        dmart.setEmpRatePerHr(20);
+        dmart.setNumWorkingDays(20);
+        dmart.setMaxWorkingHrsInMonth(100);
+        utilities.attendance(dmart.getCompany(),dmart.getEmpRatePerHr(),
+                             dmart.getNumWorkingDays(),dmart.getMaxWorkingHrsInMonth());
 
-            System.out.println("Enter Company Name :");
-            String company = scanner.next();
-            System.out.println("Employee Rate Per Hour :");
-            int empRatePerHr = scanner.nextInt();
-            System.out.println("Enter Maximum  Number of Working Days in a Month a employee should work :");
-            int NumWorkingDays = scanner.nextInt();
-            System.out.println("Enter Maximum Hours a employee should work in a month :");
-            int setMaxWorkingHrsInMonth = scanner.nextInt();
-            empObjects.setCompany(company);
-            empObjects.setEmpRatePerHr(empRatePerHr);
-            empObjects.setNumWorkingDays(NumWorkingDays);
-            empObjects.setMaxWorkingHrsInMonth(setMaxWorkingHrsInMonth);
-            utilities.attendance(empObjects.getCompany(),empObjects.getEmpRatePerHr(),empObjects.getNumWorkingDays(),empObjects.getMaxWorkingHrsInMonth());
+        EmpObjects reliance=new EmpObjects("Reliance",20,
+                                           20,100);
+        utilities.attendance(reliance.getCompany(),reliance.getEmpRatePerHr(),
+                             reliance.getNumWorkingDays(),reliance.getMaxWorkingHrsInMonth());
 
-        }
+        ArrayList<EmpObjects> list = new ArrayList<EmpObjects>();
+        list.add(dmart);
+        list.add(reliance);
 
+        for (EmpObjects emp : list)
+            System.out.println(emp);
     }
 }

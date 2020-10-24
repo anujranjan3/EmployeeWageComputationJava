@@ -7,6 +7,17 @@ public class EmpObjects {
     private int numWorkingDays;
     private int MaxWorkingHrsInMonth;
 
+    public EmpObjects() {
+    }
+
+    public EmpObjects(String company,int empRatePerHr,int numWorkingDays,int MaxWorkingHrsInMoth) {
+
+        this.company=company;
+        this.empRatePerHr=empRatePerHr;
+        this.numWorkingDays=numWorkingDays;
+        this.MaxWorkingHrsInMonth=MaxWorkingHrsInMoth;
+    }
+
     public String getCompany() {
         return company;
     }
@@ -39,6 +50,13 @@ public class EmpObjects {
         MaxWorkingHrsInMonth = maxWorkingHrsInMonth;
     }
 
-    public EmpObjects() {
+    @Override
+    public String toString() {
+        return "EmpObjects{" +
+                "company='" + company + '\'' +
+                ", empRatePerHr=" + empRatePerHr +
+                ", numWorkingDays=" + numWorkingDays +
+                ", MaxWorkingHrsInMonth=" + MaxWorkingHrsInMonth +
+                '}';
     }
 }
