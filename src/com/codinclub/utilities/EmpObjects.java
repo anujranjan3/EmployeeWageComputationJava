@@ -1,5 +1,13 @@
 package com.codinclub.utilities;
 
+/*
+ * @author Anuj Ranjan Kumar
+ * Create Date  : 19th October 2020
+ * Modified Date: 21st October 2020
+ * Functionality: Stores Objects and class of
+ *                EmpWageComputation.java
+ * */
+
 public class EmpObjects {
 
     private String company;
