@@ -31,4 +31,7 @@ hs_err_pid*
 .idea/misc.xml
 .idea/modules.xml
 EmployeeWageComputationJava.iml
-out/*
+/out/
+/.idea/
+/src/.idea/
+/src/out/production/EmployeeWageComputationJava/
