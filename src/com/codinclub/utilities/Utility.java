@@ -12,7 +12,7 @@ import java.util.List;
  * */
 interface Utilities{
 
-    public void attendance(String company,int empRatePerHr,int NumWorkingDays,int MaxWorkingHrsInMonth);
+    public int attendance(String company, int empRatePerHr, int NumWorkingDays, int MaxWorkingHrsInMonth);
 
 }
 public class Utility implements Utilities{
@@ -33,7 +33,7 @@ public class Utility implements Utilities{
      * */
 
 
-    public void attendance(String company,int empRatePerHr,int NumWorkingDays,int MaxWorkingHrsInMonth) {
+    public int attendance(String company, int empRatePerHr, int NumWorkingDays, int MaxWorkingHrsInMonth) {
         int empHrs,totalSalary = 0,totalNumWorkingDays = 0,totalWorkingHours=0,i=0;
         List<Integer> dailyWageList=new ArrayList<Integer>();
 
@@ -60,7 +60,7 @@ public class Utility implements Utilities{
             totalWorkingHours=totalWorkingHours+empHrs;
             totalNumWorkingDays++;
             totalSalary = totalWorkingHours*empRatePerHr;
-            return totalSalary;
+
         }
         System.out.println("Company is : " + company);
         System.out.println("Total Working Days is : " + totalNumWorkingDays);
@@ -69,8 +69,7 @@ public class Utility implements Utilities{
         System.out.println("Daily Wage of Employee");
         System.out.print(dailyWageList);
         System.out.println();
-
-
+        return totalSalary;
     }
 
 }
