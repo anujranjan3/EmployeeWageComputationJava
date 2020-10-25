@@ -1,0 +1,15 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea\
+.idea\
+.idea\
+.idea\
+.idea\
+out\
+.idea\
+EmployeeWageComputationJava\
+EmployeeWageComputationJava.iml
+EmployeeWageComputationJava.iml
+EmployeeWageComputationJava\
+!/src/com/codinclub/program/EmpWageComputation.java
+!/src/com/codinclub/utilities/EmpObjects.java
+!/src/com/codinclub/utilities/Utility.java
