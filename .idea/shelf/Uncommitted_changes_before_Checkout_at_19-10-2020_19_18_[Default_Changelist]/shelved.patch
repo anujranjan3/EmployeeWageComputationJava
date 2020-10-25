@@ -1,0 +1,187 @@
+Index: src/com/codinclub/program/EmpWageComputation.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.codinclub.program;\r\nimport com.codinclub.utilities.*;\r\n\r\n/*\r\n * @author Anuj Ranjan Kumar\r\n * Create Date: 16th October 2020\r\n * Functionality: Program checks whether employee\r\n *                is present or absent\r\n * */\r\n\r\npublic class EmpWageComputation {\r\n\r\n    public static void main (String []args){\r\n\r\n        System.out.println(\"Welcome to Employee Wage Problem \");\r\n        EmpAttendance empAttendance=new EmpAttendance();\r\n        empAttendance.attendance();\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/com/codinclub/program/EmpWageComputation.java	(revision 126fdfb51e5b3d62a7403a6296f8f35d588c9262)
++++ src/com/codinclub/program/EmpWageComputation.java	(date 1603115088725)
+@@ -3,7 +3,7 @@
+ 
+ /*
+  * @author Anuj Ranjan Kumar
+- * Create Date: 16th October 2020
++ * Create Date: 19th October 2020
+  * Functionality: Program checks whether employee
+  *                is present or absent
+  * */
+@@ -14,7 +14,12 @@
+ 
+         System.out.println("Welcome to Employee Wage Problem ");
+         EmpAttendance empAttendance=new EmpAttendance();
+-        empAttendance.attendance();
++        EmpDailyWage empDailyWage=new EmpDailyWage();
++        empDailyWage.setCompany("Dmart");
++        empDailyWage.setEmpRatePerHr(20);
++        empDailyWage.setNumWorkingDays(20);
++        empDailyWage.setMaxWorkingHrsInMonth(100);
++        empAttendance.attendance(empDailyWage.getCompany(),empDailyWage.getEmpRatePerHr(),empDailyWage.getNumWorkingDays(),empDailyWage.getMaxWorkingHrsInMonth());
+ 
+     }
+ }
+Index: src/com/codinclub/utilities/EmpAttendance.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.codinclub.utilities;\r\n\r\n/*\r\n * @author Anuj Ranjan Kumar\r\n * Create Date: 16th October 2020\r\n * Functionality: This is a Utility file which contains the logic\r\n *                 for EmpWageCompuation.java file\r\n * */\r\n\r\npublic class EmpAttendance {\r\n\r\n    /*\r\n     * Functionality: This method contains logic of checking whether\r\n     *                 employee is FullTime , PartTime or Absent\r\n     *                 and Printing Daily Wage and Monthly Salary\r\n     *                 of Employee till working Hours reaches 100\r\n     *                 or Days 20\r\n     * */\r\n\r\n    EmpDailyWage empDailyWage = new EmpDailyWage();\r\n\r\n    public void attendance() {\r\n        int Salary, totalSalary = 0, empHrs = 0, numWorkingDays = 0,workingHours=0;\r\n        while (numWorkingDays<20&&workingHours<100){\r\n            double empCheck = (Math.floor(Math.random() * 10) % 3);\r\n            int check = (int) empCheck;\r\n\r\n            switch (check) {\r\n                case 0:\r\n                    empHrs = 0;\r\n                    System.out.println(\"Employee is Absent\");\r\n                    break;\r\n                case 1:\r\n                    System.out.println(\"Employee is Part Time\");\r\n                    empHrs = 8;\r\n                    break;\r\n                case 2:\r\n                    System.out.println(\"Employee is FullTime\");\r\n                    empHrs = 16;\r\n            }\r\n            workingHours=workingHours+empHrs;\r\n            numWorkingDays++;\r\n            Salary = empDailyWage.empWage(empHrs);\r\n            totalSalary = totalSalary + Salary;\r\n        }\r\n        System.out.println(\"Monthly Salary is : \" + totalSalary);\r\n        System.out.println(\"Working Days is : \" + numWorkingDays);\r\n        System.out.println(\"Working Hours is : \" + workingHours);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/com/codinclub/utilities/EmpAttendance.java	(revision 126fdfb51e5b3d62a7403a6296f8f35d588c9262)
++++ src/com/codinclub/utilities/EmpAttendance.java	(date 1603115229165)
+@@ -2,13 +2,16 @@
+ 
+ /*
+  * @author Anuj Ranjan Kumar
+- * Create Date: 16th October 2020
++ * Create Date: 19th October 2020
+  * Functionality: This is a Utility file which contains the logic
+  *                 for EmpWageCompuation.java file
+  * */
+ 
+ public class EmpAttendance {
+ 
++    public static final int is_Part_Time = 1;
++    public static final int is_Full_Time=2;
++
+     /*
+      * Functionality: This method contains logic of checking whether
+      *                 employee is FullTime , PartTime or Absent
+@@ -17,34 +20,33 @@
+      *                 or Days 20
+      * */
+ 
+-    EmpDailyWage empDailyWage = new EmpDailyWage();
+-
+-    public void attendance() {
+-        int Salary, totalSalary = 0, empHrs = 0, numWorkingDays = 0,workingHours=0;
+-        while (numWorkingDays<20&&workingHours<100){
++    public void attendance(String company, int empRatePerHr, int NumWorkingDays, int MaxWorkingHrsInMonth) {
++        int salary,empHrs, totalSalary = 0,totalWorkingHours=0,totalNumWorkingDays=0;
++        while (totalNumWorkingDays<NumWorkingDays&&totalWorkingHours<MaxWorkingHrsInMonth){
+             double empCheck = (Math.floor(Math.random() * 10) % 3);
+             int check = (int) empCheck;
+-
+             switch (check) {
+-                case 0:
++                default:
+                     empHrs = 0;
+-                    System.out.println("Employee is Absent");
++                    System.out.println("Employee is Absent : "+empHrs);
+                     break;
+-                case 1:
+-                    System.out.println("Employee is Part Time");
+-                    empHrs = 8;
++                case is_Part_Time:
++                    empHrs = 4;
++                    System.out.println("Employee is Part Time : "+empHrs );
++
+                     break;
+-                case 2:
+-                    System.out.println("Employee is FullTime");
+-                    empHrs = 16;
++                case is_Full_Time:
++                    empHrs = 8;
++                    System.out.println("Employee is FullTime : "+empHrs);
++
+             }
+-            workingHours=workingHours+empHrs;
+-            numWorkingDays++;
+-            Salary = empDailyWage.empWage(empHrs);
+-            totalSalary = totalSalary + Salary;
++            totalWorkingHours=totalWorkingHours+empHrs;
++            totalNumWorkingDays++;
++            totalSalary = totalWorkingHours*empRatePerHr;
+         }
+-        System.out.println("Monthly Salary is : " + totalSalary);
+-        System.out.println("Working Days is : " + numWorkingDays);
+-        System.out.println("Working Hours is : " + workingHours);
++        System.out.println("Name of the Company : "+company);
++        System.out.println("Total Working Days is : " + totalNumWorkingDays);
++        System.out.println("Total Working Hours is : " + totalWorkingHours);
++        System.out.println("Total Salary :"+totalSalary);
+     }
+ }
+Index: src/com/codinclub/utilities/EmpDailyWage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.codinclub.utilities;\r\n\r\n/*\r\n * @author Anuj Ranjan Kumar\r\n * Create Date: 16th October 2020\r\n * Functionality: This is a Utility file which contains the logic\r\n *                 for EmpAttendance.java file\r\n * */\r\n\r\npublic class EmpDailyWage {\r\n\r\n    /*\r\n     * Functionality: This method contains logic of checking whether\r\n     *                 computing salary of employee\r\n     * @param empHrs - first input argument that is taken in\r\n     * */\r\n\r\n    public void empWage(int empHrs){\r\n\r\n        int empRatePerHr=20;\r\n        int salary=empHrs*empRatePerHr;\r\n        System.out.println(\"Salary is : \"+salary);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/com/codinclub/utilities/EmpDailyWage.java	(revision 126fdfb51e5b3d62a7403a6296f8f35d588c9262)
++++ src/com/codinclub/utilities/EmpDailyWage.java	(date 1603112176642)
+@@ -2,23 +2,53 @@
+ 
+ /*
+  * @author Anuj Ranjan Kumar
+- * Create Date: 16th October 2020
++ * Create Date: 19th October 2020
+  * Functionality: This is a Utility file which contains the logic
+  *                 for EmpAttendance.java file
+  * */
+ 
+ public class EmpDailyWage {
+ 
+-    /*
+-     * Functionality: This method contains logic of checking whether
+-     *                 computing salary of employee
+-     * @param empHrs - first input argument that is taken in
+-     * */
++    private String company;
++    private int empRatePerHr;
++    private int numWorkingDays;
++    private int MaxWorkingHrsInMonth;
++
++
++
++    public String getCompany() {
++        return company;
++    }
++
++    public void setCompany(String company) {
++        this.company = company;
++    }
++
++    public int getEmpRatePerHr() {
++        return empRatePerHr;
++    }
++
++    public void setEmpRatePerHr(int empRatePerHr) {
++        this.empRatePerHr = empRatePerHr;
++    }
+ 
+-    public void empWage(int empHrs){
++    public int getNumWorkingDays() {
++        return numWorkingDays;
++    }
+ 
+-        int empRatePerHr=20;
+-        int salary=empHrs*empRatePerHr;
+-        System.out.println("Salary is : "+salary);
++    public void setNumWorkingDays(int numWorkingDays) {
++        this.numWorkingDays = numWorkingDays;
+     }
++
++    public int getMaxWorkingHrsInMonth() {
++        return MaxWorkingHrsInMonth;
++    }
++
++    public void setMaxWorkingHrsInMonth(int maxWorkingHrsInMonth) {
++        MaxWorkingHrsInMonth = maxWorkingHrsInMonth;
++    }
++
++    public EmpDailyWage() {
++    }
++
+ }
