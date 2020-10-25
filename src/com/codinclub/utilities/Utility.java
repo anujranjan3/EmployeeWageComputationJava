@@ -3,11 +3,16 @@ package com.codinclub.utilities;
 /*
  * @author Anuj Ranjan Kumar
  * Create Date: 19th October 2020
+ * Modified Date: 24th October 2020
  * Functionality: This is a Utility file which contains the logic
  *                 for EmpWageCompuation.java file
  * */
+interface Utilities{
 
-public class Utility {
+    public void attendance(String company,int empRatePerHr,int NumWorkingDays,int MaxWorkingHrsInMonth);
+
+}
+public class Utility implements Utilities{
 
     public static final int is_Part_Time=1;
     public static final int is_Full_Time=2;
