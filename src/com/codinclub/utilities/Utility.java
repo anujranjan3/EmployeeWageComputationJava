@@ -36,6 +36,7 @@ public class Utility implements Utilities{
     public void attendance(String company,int empRatePerHr,int NumWorkingDays,int MaxWorkingHrsInMonth) {
         int empHrs,totalSalary = 0,totalNumWorkingDays = 0,totalWorkingHours=0,i=0;
         List<Integer> dailyWageList=new ArrayList<Integer>();
+        List<Integer> companyWageList=new ArrayList<Integer>();
         while (totalNumWorkingDays<NumWorkingDays&&totalWorkingHours<MaxWorkingHrsInMonth){
             double empCheck = (Math.floor(Math.random() * 10) % 3);
             int check = (int) empCheck;
@@ -59,6 +60,7 @@ public class Utility implements Utilities{
             totalWorkingHours=totalWorkingHours+empHrs;
             totalNumWorkingDays++;
             totalSalary = totalWorkingHours*empRatePerHr;
+            companyWageList.add(totalSalary);
         }
         System.out.println("Company is : " + company);
         System.out.println("Total Working Days is : " + totalNumWorkingDays);
@@ -67,5 +69,8 @@ public class Utility implements Utilities{
         System.out.println("Daily Wage of Employee");
         System.out.print(dailyWageList);
         System.out.println();
+
+
     }
+
 }

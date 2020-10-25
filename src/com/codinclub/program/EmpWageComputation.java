@@ -23,6 +23,7 @@ public class EmpWageComputation {
         System.out.println("Enter Number of Companies to be computed :");
         int counter=scanner.nextInt();
         ArrayList<EmpObjects> list = new ArrayList<EmpObjects>();
+
         for (int i=0; i<counter; i++){
             EmpObjects empObjects=new EmpObjects();
             System.out.println("Enter Company Name :");
@@ -39,9 +40,11 @@ public class EmpWageComputation {
             empObjects.setMaxWorkingHrsInMonth(setMaxWorkingHrsInMonth);
             utilities.attendance(empObjects.getCompany(),empObjects.getEmpRatePerHr(),empObjects.getNumWorkingDays(),empObjects.getMaxWorkingHrsInMonth());
             list.add(empObjects);
+
         }
 
         for (EmpObjects emp : list)
             System.out.println(emp);
+
     }
 }
