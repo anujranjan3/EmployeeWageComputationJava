@@ -1,6 +1,7 @@
 package com.codinclub.program;
 import com.codinclub.utilities.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -38,9 +39,8 @@ public class EmpWageComputation {
             empObjects.setEmpRatePerHr(empRatePerHr);
             empObjects.setNumWorkingDays(NumWorkingDays);
             empObjects.setMaxWorkingHrsInMonth(setMaxWorkingHrsInMonth);
-            utilities.attendance(empObjects.getCompany(),empObjects.getEmpRatePerHr(),empObjects.getNumWorkingDays(),empObjects.getMaxWorkingHrsInMonth());
+            totalSalary=utilities.attendance(empObjects.getCompany(),empObjects.getEmpRatePerHr(),empObjects.getNumWorkingDays(),empObjects.getMaxWorkingHrsInMonth());
             list.add(empObjects);
-            totalSalary=utilities.attendance();
             companyWageList.add(totalSalary);
         }
 
