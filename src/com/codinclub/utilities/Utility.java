@@ -1,5 +1,8 @@
 package com.codinclub.utilities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /*
  * @author Anuj Ranjan Kumar
  * Create Date: 19th October 2020
@@ -31,7 +34,8 @@ public class Utility implements Utilities{
 
 
     public void attendance(String company,int empRatePerHr,int NumWorkingDays,int MaxWorkingHrsInMonth) {
-        int empHrs,totalSalary = 0,totalNumWorkingDays = 0,totalWorkingHours=0;
+        int empHrs,totalSalary = 0,totalNumWorkingDays = 0,totalWorkingHours=0,i=0;
+        List<Integer> dailyWageList=new ArrayList<Integer>();
         while (totalNumWorkingDays<NumWorkingDays&&totalWorkingHours<MaxWorkingHrsInMonth){
             double empCheck = (Math.floor(Math.random() * 10) % 3);
             int check = (int) empCheck;
@@ -50,6 +54,8 @@ public class Utility implements Utilities{
                     System.out.println("Employee is FullTime : "+empHrs);
 
             }
+            int dailyWage= (int) (empCheck * empRatePerHr);
+            dailyWageList.add(dailyWage);
             totalWorkingHours=totalWorkingHours+empHrs;
             totalNumWorkingDays++;
             totalSalary = totalWorkingHours*empRatePerHr;
@@ -58,5 +64,8 @@ public class Utility implements Utilities{
         System.out.println("Total Working Days is : " + totalNumWorkingDays);
         System.out.println("Total Working Hours is : " + totalWorkingHours);
         System.out.println("Total Salary is : " + totalSalary);
+        System.out.println("Daily Wage of Employee");
+        System.out.print(dailyWageList);
+        System.out.println();
     }
 }
