@@ -19,11 +19,11 @@ public class EmpWageComputation {
         Scanner scanner=new Scanner(System.in);
         System.out.println("Welcome to Employee Wage Problem ");
         Utility utilities=new Utility();
-
+        int totalSalary;
         System.out.println("Enter Number of Companies to be computed :");
         int counter=scanner.nextInt();
         ArrayList<EmpObjects> list = new ArrayList<EmpObjects>();
-
+        List<Integer> companyWageList=new ArrayList<Integer>();
         for (int i=0; i<counter; i++){
             EmpObjects empObjects=new EmpObjects();
             System.out.println("Enter Company Name :");
@@ -40,11 +40,13 @@ public class EmpWageComputation {
             empObjects.setMaxWorkingHrsInMonth(setMaxWorkingHrsInMonth);
             utilities.attendance(empObjects.getCompany(),empObjects.getEmpRatePerHr(),empObjects.getNumWorkingDays(),empObjects.getMaxWorkingHrsInMonth());
             list.add(empObjects);
-
+            totalSalary=utilities.attendance();
+            companyWageList.add(totalSalary);
         }
 
         for (EmpObjects emp : list)
             System.out.println(emp);
-
+        System.out.println("Total Salary for each Company");
+        System.out.print(companyWageList);
     }
 }
